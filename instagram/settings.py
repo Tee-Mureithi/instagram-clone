@@ -40,8 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'gram.apps.GramConfig',
     'crispy_forms',
+    'taggit',
 ]
 
+#Django Taggit
+TAGGIT_CASE_INSENSITIVE = True
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 

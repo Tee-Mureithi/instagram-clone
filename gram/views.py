@@ -7,9 +7,9 @@ from django.contrib.auth.forms import AuthenticationForm
 
 # Create your views here.
 
-# def homepage(request):
+def homepage(request):
 
-#     return render (request=request, template_name='main/home.html')
+    return render (request=request, template_name='main/home.html')
 
 def register_request(request):
     if request.method == "POST":
@@ -21,7 +21,7 @@ def register_request(request):
             return redirect ("gram.homepage")
         messages.error(request, "Unsuccessful registartion.Invalid information.")
     form = NewUserForm()
-    return render (request=request, template_name="main/register.html", context={"register_form":form})
+    return render (request=request, template_name="user/register.html", context={"register_form":form})
 
 
 def login_request(request):
@@ -44,4 +44,4 @@ def login_request(request):
 
     form = AuthenticationForm()
 
-    return render(request=request, template_name="main/login.html", context={"login_form":form})
+    return render(request, "user/login.html",{"login_form":form})
