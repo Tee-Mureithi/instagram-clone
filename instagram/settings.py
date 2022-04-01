@@ -38,13 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'gram.apps.GramConfig',
+    'users.apps.UsersConfig',
+    'feed.apps.FeedConfig',
     'crispy_forms',
-    'taggit',
+
 ]
 
 #Django Taggit
-TAGGIT_CASE_INSENSITIVE = True
+# TAGGIT_CASE_INSENSITIVE = True
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -85,7 +86,7 @@ WSGI_APPLICATION = 'instagram.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': str(BASE_DIR / 'db.sqlite3',),
     }
 }
 
@@ -124,6 +125,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = 'static/'
 
 # Default primary key field type

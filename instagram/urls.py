@@ -26,6 +26,6 @@ from manage import main
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include ('gram.urls')),
+    path('', include ('')),
     
 ] +  static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
