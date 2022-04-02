@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'gram',
     'crispy_forms',
+    'rest_framework',
 
 ]
 
