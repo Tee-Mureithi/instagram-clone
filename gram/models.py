@@ -39,11 +39,11 @@ class Profile(models.Model):
         return cls.objects.filter(user__username__icontains=name).all()
 
 
-class Post (models.Models):
+class Post(models.Model):
     image = models.ImageField(upload_to='posts/')
     name = models.CharField(max_length=250, blank=True)
     caption = models.CharField(max_length=250, blank=True)
-    likes = models.ManyToManyField(User, telated_name='likes', blank=True)
+    likes = models.ManyToManyField(User, related_name='likes', blank=True)
     user = models.ForeignKey(Profile, on_delete=models.CASCADE,related_name='posts')
     created = models.DateTimeField(auto_now_add=True, null=True)
 
@@ -77,7 +77,7 @@ def __str__(self):
 class Comment(models.Model):
     comment = models.TextField()
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='.comments')
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='comments')
     created = models.DateTimeField(auto_now_add=True, null=True)
 
 
