@@ -1,10 +1,13 @@
-from django.shortcuts import  render, redirect
-from .forms import NewUserForm
+from django.shortcuts import  render, redirect , get_object_or_404
+from .forms import NewUserForm, PostForm
+from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib.auth import login
 from django.contrib import messages
 from django.contrib.auth import login, authenticate 
 from django.contrib.auth.forms import AuthenticationForm #
-
+from .models import Post, Comment, Profile, Follow
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 def register_request(request):
 	if request.method == "POST":
@@ -36,3 +39,25 @@ def login_request(request):
 			messages.error(request,"Invalid username or password.")
 	form = AuthenticationForm()
 	return render(request=request, template_name="registration/login.html", context={"login_form":form})
+
+
+@login_required(login_url='login')
+def index(request):
+    images = Post.objects.all()
+    users = User.objects.exclude(id=request.user.id)
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = request.user.profile
+            post.save()
+            return HttpResponseRedirect(request.path_info)
+    else:
+        form = PostForm()
+    params = {
+        'images': images,
+        'form': form,
+        'users': users,
+
+    }
+    return render(request, 'instagram/index.html', params)
