@@ -1,9 +1,10 @@
-from email.policy import default
-from django.contrib import admin
+# from email.policy import default
+# from django.contrib import admin
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.db import models
+from django.core.exceptions import ObjectDoesNotExist
 
 
 
@@ -21,7 +22,11 @@ class Profile(models.Model):
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
-        if created:
+        # if created:
+        #     Profile.objects.create(user=instance)
+         try:
+            instance.profile.save()
+         except ObjectDoesNotExist:
             Profile.objects.create(user=instance)
 
     @receiver(post_save, sender=User)

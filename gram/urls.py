@@ -1,11 +1,15 @@
 from django.urls import path,include
 from gram.views import PostLikeToggle, PostLikeAPIToggle
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 app_name = "gram"   
 
 
 urlpatterns = [
+    #   path('', include('gram.urls')),
+
     # path("", views.homepage, name="homepage"),
     
     path("register", views.register_request, name="register"),
@@ -20,4 +24,9 @@ urlpatterns = [
     path('search/', views.search_profile, name='search'),
     path('unfollow/<to_unfollow>', views.unfollow, name='unfollow'),
     path('follow/<to_follow>', views.follow, name='follow')
+    
+   
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

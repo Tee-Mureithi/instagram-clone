@@ -1,7 +1,7 @@
 from django.shortcuts import  render, redirect , get_object_or_404
 from .forms import CommentForm, NewUserForm, PostForm, UpdateUserForm, UpdateUserProfileForm
 from django.http import HttpResponseRedirect, JsonResponse
-from django.contrib.auth import login
+# from django.contrib.auth import login
 from django.contrib import messages
 from django.contrib.auth import login, authenticate 
 from django.contrib.auth.forms import AuthenticationForm #
@@ -12,6 +12,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import authentication, permissions
 from django.template.loader import render_to_string
+from django.views.generic import RedirectView
+
 
 
 def register_request(request):
@@ -21,10 +23,29 @@ def register_request(request):
 			user = form.save()
 			login(request, user)
 			messages.success(request, "Registration successful." )
-			return redirect("gram:homepage")
+		    # username = form.cleaned_data.get('username')
+            # raw_password = form.cleaned_data.get('password1')
+
+			# return redirect("gram:homepage")
 		messages.error(request, "Unsuccessful registration. Invalid information.")
 	form = NewUserForm()
 	return render (request=request, template_name="registration/register.html", context={"register_form":form})
+
+# def register_request(request):
+#     if request.method == 'POST':
+#         form =  NewUserForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             username = form.cleaned_data.get('username')
+#             raw_password = form.cleaned_data.get('password1')
+#             user = authenticate(username=username, password=raw_password)
+#             login(request, user)
+#             return redirect('index')
+#     else:
+#         form =  NewUserForm()
+#     return render(request, 'registration/register.html', {'form': form})
+
+
 
 
 def login_request(request):
@@ -37,7 +58,7 @@ def login_request(request):
 			if user is not None:
 				login(request, user)
 				messages.info(request, f"You are now logged in as {username}.")
-				return redirect("gram:homepage")
+				# return redirect("gram:homepage")
 			else:
 				messages.error(request,"Invalid username or password.")
 		else:
@@ -65,12 +86,13 @@ def index(request):
         'users': users,
 
     }
-    return render(request, 'instagram/index.html', params)
+    return render(request, 'gram/index.html', params)
 
 
 @login_required(login_url='login')
 def profile(request, username):
     images = request.user.profile.posts.all()
+    # Profile.objects.get_or_create(user=request.user)
     if request.method == 'POST':
         user_form = UpdateUserForm(request.POST, instance=request.user)
         prof_form = UpdateUserProfileForm(request.POST, request.FILES, instance=request.user.profile)
@@ -87,7 +109,7 @@ def profile(request, username):
         'images': images,
 
     }
-    return render(request, 'instagram/profile.html', params)
+    return render(request, 'gram/profile.html', params)
 
 
 @login_required(login_url='login')
@@ -111,7 +133,7 @@ def user_profile(request, username):
         'follow_status': follow_status
     }
     print(followers)
-    return render(request, 'instagram/user_profile.html', params)
+    return render(request, 'gram/user_profile.html', params)
 
 
 @login_required(login_url='login')
@@ -136,7 +158,7 @@ def post_comment(request, id):
         'is_liked': is_liked,
         'total_likes': image.total_likes()
     }
-    return render(request, 'instagram/single_post.html', params)
+    return render(request, 'gram/single_post.html', params)
 
 
 class PostLikeToggle(RedirectView):
@@ -197,7 +219,7 @@ def like_post(request):
         'total_likes': image.total_likes()
     }
     if request.is_ajax():
-        html = render_to_string('instagram/like_section.html', params, request=request)
+        html = render_to_string('gram/like_section.html', params, request=request)
         return JsonResponse({'form': html})
 
 
@@ -212,10 +234,10 @@ def search_profile(request):
             'results': results,
             'message': message
         }
-        return render(request, 'instagram/results.html', params)
+        return render(request, 'gram/results.html', params)
     else:
         message = "You haven't searched for any image category"
-    return render(request, 'instagram/results.html', {'message': message})
+    return render(request, 'gram/results.html', {'message': message})
 
 
 def unfollow(request, to_unfollow):
