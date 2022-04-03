@@ -1,3 +1,4 @@
+# from tkinter import Image
 from django.shortcuts import  render, redirect , get_object_or_404
 from .forms import CommentForm, NewUserForm, PostForm, UpdateUserForm, UpdateUserProfileForm
 from django.http import HttpResponseRedirect, JsonResponse
@@ -15,6 +16,11 @@ from django.template.loader import render_to_string
 from django.views.generic import RedirectView
 
 
+@login_required(login_url='/')
+def home(request):
+    # images = Image.get_all_images()
+    
+    return render(request, 'gram/index.html')
 
 def register_request(request):
 	if request.method == "POST":
@@ -26,7 +32,7 @@ def register_request(request):
 		    # username = form.cleaned_data.get('username')
             # raw_password = form.cleaned_data.get('password1')
 
-			# return redirect("gram:homepage")
+			return redirect("gram:index")
 		messages.error(request, "Unsuccessful registration. Invalid information.")
 	form = NewUserForm()
 	return render (request=request, template_name="registration/register.html", context={"register_form":form})
@@ -58,7 +64,7 @@ def login_request(request):
 			if user is not None:
 				login(request, user)
 				messages.info(request, f"You are now logged in as {username}.")
-				# return redirect("gram:homepage")
+				return redirect('index.html')
 			else:
 				messages.error(request,"Invalid username or password.")
 		else:

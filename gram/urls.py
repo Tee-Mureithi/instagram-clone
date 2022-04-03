@@ -10,9 +10,10 @@ app_name = "gram"
 urlpatterns = [
     #   path('', include('gram.urls')),
 
-    # path("", views.homepage, name="homepage"),
+   
     
     path("register", views.register_request, name="register"),
+    path("", views.home, name="home"),
     path('account/', include('django.contrib.auth.urls')),
     path("login", views.login_request, name="login"),
     path('profile/<username>/', views.profile, name='profile'),
