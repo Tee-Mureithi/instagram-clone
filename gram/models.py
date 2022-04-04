@@ -1,7 +1,7 @@
 from django.db import models
 import datetime as dt
 # cloudinary
-from cloudinary.models import CloudinaryField
+# from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
 from django.db.models.fields import related
 # Create your models here.
@@ -9,9 +9,8 @@ from django.db.models.fields import related
 
 # image model
 class Image(models.Model):
-    user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='images')
-    image = CloudinaryField('image')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='images')
+    image = models.ImageField(upload_to='images')
     image_name = models.CharField(max_length=50)
     image_caption = models.TextField()
     image_date = models.DateTimeField(auto_now_add=True)
@@ -61,6 +60,10 @@ class Profile(models.Model):
     # profile_photo = CloudinaryField('image')
     bio = models.TextField(max_length=500, blank=True, null=True)
     contact = models.CharField(max_length=50, blank=True, null=True)
+
+
+
+
 
     def update(self):
         self.save()

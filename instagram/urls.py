@@ -17,7 +17,8 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
 from django_registration.backends.one_step.views import RegistrationView
-
+from django.conf.urls.static import static #add this
+from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/register/', RegistrationView.as_view(success_url='/'),
@@ -25,4 +26,4 @@ urlpatterns = [
     path('accounts/', include('django_registration.backends.one_step.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     url(r'^', include('gram.urls')),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
