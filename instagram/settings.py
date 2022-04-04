@@ -14,11 +14,10 @@ import os
 from pathlib import Path
 from decouple import config,Csv
 import dj_database_url
+import django_heroku
 
 
-# import cloudinary
-# import cloudinary.uploader
-# import cloudinary.api
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,13 +26,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
-# setup cloudinary credentials for django-cloudinary
-# cloudinary.config(
-#     cloud_name=config('CLOUDINARY_CLOUD_NAME'),
-#     api_key=config('CLOUDINARY_API_KEY'),
-#     api_secret=config('CLOUDINARY_API_SECRET'),
-#     secure=True
-# )
+
 
 
 
@@ -87,7 +80,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'gram.apps.GramConfig',
     'bootstrap5',
-    # 'cloudinary',
+   
 
 ]
 
@@ -209,4 +202,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # LOGIN_REDIRECT_URL = 'home'
 # LOGIN_URL = 'login'
 
-
+django_heroku.settings(locals())
