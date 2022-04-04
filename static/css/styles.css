@@ -1,148 +1,191 @@
-@media only screen and (max-width: 475px){
-    .download{
-        width:45%;
-        display:flex;
-        flex-direction:row;
-        display:inline;
+body {
+    background-color: #fafafa;
+}
+
+/* Navbar styling */
+
+#navMain {
+    font-family: 'Raleway';
+    font-size: 20px;
+    /* text-transform: uppercase; */
+    background: rgb(255, 255, 255);
+}
+
+#navMain .navbar-toggler {
+    font-size: 16px;
+    padding: 11px;
+    color: rgb(0, 0, 0);
+}
+
+#navMain a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+#navMain .navbar-nav .nav-item:active,
+#navMain .navbar-nav .nav-item:focus {
+    outline: none;
+    background-color: rgb(240, 120, 120);
+}
+
+@media (min-width: 992px) {
+    #navMain {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        -webkit-transition: padding-top 0.5s ease-in-out, padding-bottom 0.5s;
+        -moz-transition: padding-top 0.5s ease-in-out, padding-bottom 0.5s;
+        transition: padding-top 0.5s ease-in-out, padding-bottom 0.5s;
+        letter-spacing: 1px;
+        background: rgb(255, 255, 255);
+        border-bottom: 1px solid #e6e6e6;
+        /* height: 70px; */
     }
-    #insta{
-        height:60%;
+    #navMain .nav-link.active {
+        outline: none;
+        background-color: rgb(255, 255, 255);
     }
-
+    #navMain .nav-link.active:hover {
+        color: white;
+        background-color: rgba(230, 210, 97, 0.637)
+    }
+    #navMain.navbar-shrink {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background: rgb(255, 255, 255);
+        border-bottom: 1px solid #e6e6e6;
+    }
+    #navMain.navbar-shrink a {
+        color: rgba(0, 0, 0, 0.973);
+    }
 }
 
-h1{
-    color:green;
-}
-.form-text, .asteriskField{
-    display:none;
-}
-.reg{
-    background-color:#f9f9f9;
-}
-.alert{
-    margin:0;
-    padding:0;
-}
-.alert ul li {
-    list-style-type: none;
-    padding:0;
-    margin:0;
-    font-size:12px;
-}
-.navbar{
-    background-color:white;
-}
-.instaicon{
-    display: inline-block;
-    background-image: url(/static/images/96319a506a03.png);
-    padding:0px;
-}
-.instaglyph{
-    display: inline-block;
-    background-image: url(/static/images/868a059b8fc8.png);
-    margin:8px;
-}
-.modal-body a{
-    text-decoration:none;
-    color:black;
-    text-align:center;
-}
-.hearticon{
-    color:black;
-    font-size:30px;
-    margin-left:-10px;
-    margin-right:-10px;
-}
-.viewall a{
-    text-decoration:none;
-    color:grey;
-}
-.disc{
-    background-position: -458px -250px;
-    width: 24px;
-    height: 24px;
-}
-.like{
-    background-position: -458px -328px;
-    height: 24px;
-    width: 24px;
-    margin-left: 30px;
-}
-.pers{
-    background-position: -157px -357px;
-    height: 24px;
-    width: 24px;
-    margin-left: 30px;
-}
-.logo{
-    background-position: -98px -203px;
-    height: 35px;
-    width: 176px;
-}
-.mainicon{
-    background-position: -401px -388px;
-    height: 30px;
-    width: 30px;
-    margin-right: 146px;
-}
-.main{
-    margin-top:5%;
-}
-body{
-    background-color:#f9f9f9;
+.nav-search {
+    display: flex;
+    justify-content: center;
 }
 
-.account-img {
-    height: 165px;
-    width: 165px;
+a:hover {
+    text-decoration: none;
+    cursor: pointer;
 }
-.user-img {
-    height: 55px;
-    width: 55px;
-    margin-top:25px;
+
+.home-images {
+    background-color: #fff;
+    border: 1px solid #e6e6e6;
+    border-radius: 1px;
+    margin: 0 0 10px;
 }
-.inname{
-    font-size:14px;
-}
-.user-details{
-    margin-left:-30px;
-}
-.userinfo{
-    margin-top:24px;
-}
-.username{
-    font-size:30px;
-}
-#cog{
-    font-size:24px;
-}
-.card-body{
-    margin:0px;
-    padding:0px;
-}
-.user{
-    color:black;
-}
-.user a:hover{
-    text-decoration:none;
-}
-.col-form-label{
-    font-size:14;
-}
-#overlay{
-    display: none;
-    color: black;
+
+.home-images img {
     width: 100%;
-    height: 100%;
-    background-color:rgba(37, 36, 36, 0.456);
-    position:absolute;
-    top: 0px;
-    left: 0px;
-    text-align: center;
-    padding-top: 30%;
+    border-top: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
 }
-.card:hover #overlay{
-    display: block;
 
+.top {
+    padding-top: 6rem;
+}
+
+.top-section {
+    padding-top: 1rem;
+    padding-bottom: 3rem;
+}
+
+.top-section img {
+    width: 10rem;
+    height: 10rem;
+}
+
+.profile-image {
+    display: flex;
+    justify-content: center;
+}
+
+.profile-image img {
+    border-radius: 10rem;
+}
+
+.user-images img {
+    width: 100%;
+    /* height: inherit; */
+}
+
+.images {
+    padding: 5px;
+    height: 33.3%;
+    overflow: hidden;
+}
+
+.username {
+    font-family: 'Raleway';
+    font-size: 35px;
+}
+
+.btn-edit {
+    color: rgb(0, 0, 0);
+    background-color: #ebebeb;
+    border-color: #000000;
+    margin-bottom: 5px;
+}
+
+.fa {
+    color: black;
+}
+
+.edit-profile {
+    background-color: #fff;
+    border: 1px solid #e6e6e6;
+    border-radius: 1px;
+    margin: 0 0 10px;
+    padding: 10px 0;
+}
+
+.edit-areas {
+    border-right: 1px solid #e6e6e6;
+}
+
+.modal-dialog {
+    max-width: 300px;
+}
+
+.modal-body {
+    padding: 0;
+}
+
+.modal-body a {
+    cursor: pointer;
+    color: black;
+}
+
+.modal-body a:hover {
+    text-decoration: none;
+}
+
+.home-text {
+    padding-left: 1rem;
+    padding-top: 1rem;
+}
+
+.home-list {
+    padding-left: 1rem;
+}
+.search-results{
+    text-align: center;
+    padding-bottom: 1rem;
+    margin: 1rem;
+}
+.search-results img{
+    width: 180px;
+    height: 180px;
+    border-radius: 20rem;
+    margin: 2rem 0;
+}
+p{
+    font-family: 'Montserrat'
+}
+.font1{
+    font-family: 'Catamaran';
+}
+.font2{
+    font-family: 'Julius Sans One';
 }
