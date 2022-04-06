@@ -80,10 +80,24 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'gram.apps.GramConfig',
     'bootstrap5',
+    'cloudinary',
    
 
 ]
 
+
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+
+#adding config
+
+cloudinary.config( 
+  cloud_name = "YOUR_CLOUD_NAME", 
+  api_key = "YOUR_API_KEY", 
+  api_secret = "YOUR_API_SECRET" 
+)
 
 
 
