@@ -12,7 +12,7 @@ from django.db.models.signals import post_save
 # image model
 class Image(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='images')
-    image = models.ImageField(upload_to='images', default= "default.png")
+    image = CloudinaryField('images', default= "default.png")
     image_name = models.CharField(max_length=50)
     image_caption = models.TextField()
     image_date = models.DateTimeField(auto_now_add=True)
